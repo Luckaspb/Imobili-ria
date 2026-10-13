@@ -1,0 +1,970 @@
+* {
+    margin: 0;
+    padding: 0;
+box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    color: white;
+    background: #101010;
+}
+
+.hero {
+    min-height: 100vh;
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: 8%;
+
+    background-image:
+        linear-gradient(
+            90deg,
+            rgba(0, 0, 0, 0.68),
+            rgba(0, 0, 0, 0.08)
+        ),
+        url("./images/casa luxuosa.png");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.hero__content {
+    position: relative;
+    z-index: 2;
+    max-width: 650px;
+}
+
+.hero__label {
+    color: #e5cba5;
+    font-size: 12px;
+    letter-spacing: 4px;
+}
+
+.hero h1 {
+    font-size: clamp(42px, 6vw, 88px);
+    font-weight: 400;
+    line-height: 1.05;
+    margin: 22px 0;
+}
+
+.hero__button {
+    margin-top: 36px;
+    padding: 16px 34px;
+    background: rgba(255, 255, 255, 0.12);
+    border:1px solid rgba(255, 255, 255, 0.6);
+    color: white;
+    letter-spacing: 3px;
+    cursor: pointer;
+    backdrop-filter: blur(10px);
+    transition: 0.3s;
+
+}
+
+.hero__button:hover {
+    background: white;
+    color: #111;
+}
+/* CONTAINER DOS CARDS */
+
+.property__cards {
+    display: flex;
+    gap: 24px;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    bottom: 12%;
+    padding: 0 8%;
+    z-index: 3;
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+/* EFEITO DE VIDRO */
+.property__card {
+    flex: 1;
+    padding: 32px;
+
+    background: rgba(255, 255, 255, 0.10);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 16px;
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+
+    transform: translateY(100px);
+    opacity: 0;
+}
+/* DETALHES DOS CARDS */
+.card__number {
+    color: #e5cba5;
+    font-size: 13px;
+    letter-spacing: 3px;
+}
+.property__card h2 {
+    font-size: 13px;
+    font-weight: 400;
+    margin: 18px 0 12px;
+}
+.property__card p {
+    color: #e0e0e0;
+    font-size: 14px;
+    line-height: 1.7;
+}
+.property__cards.mostrar .property__card:nth-child(2) {
+    animation-delay: 0.6s;
+}
+.property__cards.mostrar .property__card:nth-child(3) {
+    animation-delay: 0.9s;
+}
+/* ANIMAÇÃO DE SUBIDA */
+
+@keyframes subirCard {
+    from {
+        opacity: 0;
+        transform: translateY(100px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* TÍTULO DESAPARECENDO */
+
+.hero__content {
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.hero__content.esconder {
+    opacity: 0;
+    transform: translateY(-30px);
+    pointer-events: none;
+}
+
+/* ATIVAR OS CARDS */
+
+.property__cards.mostrar {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+/* ANIMAÇÃO DOS CARDS */
+
+.property__cards.mostrar .property__card {
+    animation: subirCard 0.9s ease forwards;
+}
+
+/* ENTRADA EM SEQUÊNCIA */
+
+.property__cards.mostrar .property__card:nth-child(1) {
+    animation-delay: 0.3s;
+}
+
+.property__cards.mostrar .property__card:nth-child(2) {
+    animation-delay: 0.6s;
+}
+
+.property__cards.mostrar .property__card:nth-child(3) {
+    animation-delay: 0.9s;
+}
+
+/* RESPONSIVIDADE — CELULARES */
+
+ 
+/* RESPONSIVIDADE PARA CELULARES */
+
+@media (max-width: 768px) {
+
+    .hero {
+        min-height: 100svh;
+        padding: 24px;
+        background-position: 58% center;
+        overflow: hidden;
+    }
+
+    /* TEXTO PRINCIPAL */
+
+    .hero__content {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+    }
+
+    .hero__label {
+        font-size: 10px;
+        letter-spacing: 2px;
+        line-height: 1.6;
+    }
+
+    .hero h1 {
+        font-size: clamp(36px, 10vw, 52px);
+        line-height: 1.1;
+        margin: 20px 0;
+        overflow-wrap: break-word;
+    }
+
+    .hero p {
+        font-size: 14px;
+        line-height: 1.6;
+        max-width: 100%;
+    }
+
+    .hero__button {
+        margin-top: 28px;
+        padding: 15px 28px;
+        font-size: 12px;
+    }
+
+    /* CARDS EM FORMATO VERTICAL */
+
+    .property__cards {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        padding: 24px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 14px;
+        overflow-y: auto;
+    }
+
+    .property__card {
+        flex: 0 0 auto;
+        width: 100%;
+        padding: 20px;
+        border-radius: 14px;
+    }
+
+    .property__card h2 {
+        font-size: 19px;
+        margin: 10px 0;
+    }
+
+    .property__card p {
+        font-size: 13px;
+        line-height: 1.5;
+    }
+}
+
+/* CELULARES MUITO PEQUENOS */
+
+
+/* CELULARES COM TELAS MENORES */
+
+@media (max-width: 411px) {
+
+    .hero {
+        padding: 18px;
+        background-position: 55% center;
+    }
+
+    .hero__content {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .hero__label {
+        font-size: 9px;
+        letter-spacing: 1.5px;
+    }
+
+    .hero h1 {
+        font-size: clamp(30px, 9vw, 37px);
+        line-height: 1.12;
+        margin: 16px 0;
+        overflow-wrap: anywhere;
+    }
+
+    .hero p {
+        font-size: 13px;
+        line-height: 1.5;
+        max-width: 100%;
+    }
+
+    .hero__button {
+        margin-top: 22px;
+        padding: 13px 24px;
+        font-size: 11px;
+    }
+
+    /* CARDS */
+
+    .property__cards {
+        padding: 18px;
+        gap: 10px;
+        justify-content: safe center;
+        overflow-y: auto;
+    }
+
+    .property__card {
+        flex: 0 0 auto;
+        width: 100%;
+        padding: 16px;
+        border-radius: 12px;
+    }
+
+    .property__card h2 {
+        font-size: 17px;
+        margin: 8px 0;
+    }
+
+    .property__card p {
+        font-size: 12px;
+        line-height: 1.4;
+    }
+
+    .card__number {
+        font-size: 11px;
+    }
+}
+
+/* CELULARES BAIXOS */
+
+@media (max-width: 411px) and (max-height: 700px) {
+
+    .property__cards {
+        justify-content: flex-start;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+
+    .property__card {
+        padding: 12px 16px;
+    }
+
+    .property__card h2 {
+        margin: 6px 0;
+    }
+}
+
+/* CARDS IMOBILIÁRIOS PREMIUM */
+
+.property__card {
+    padding: 0;
+    overflow: hidden;
+    min-width: 0;
+}
+
+.card__image {
+    display: block;
+    width: 100%;
+    height: 165px;
+    object-fit: cover;
+}
+
+.card__info {
+    padding: 22px;
+}
+
+.card__info h2 {
+    font-size: 23px;
+    margin: 12px 0 8px;
+}
+
+.card__info p {
+    font-size: 13px;
+    color: #dedede;
+}
+
+.card__price {
+    display: block;
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+
+    color: #e5cba5;
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+/* AJUSTES PARA CELULARES */
+
+@media (max-width: 768px) {
+
+    .property__cards {
+        justify-content: safe center;
+        overflow-y: auto;
+        gap: 12px;
+    }
+
+    .property__card {
+        flex: 0 0 auto;
+        padding: 0;
+    }
+
+    .card__image {
+        height: clamp(80px, 13svh, 130px);
+    }
+
+    .card__info {
+        padding: 12px 16px;
+    }
+
+    .card__info h2 {
+        font-size: 17px;
+        margin: 6px 0;
+    }
+
+    .card__info p {
+        font-size: 12px;
+    }
+
+    .card__price {
+        font-size: 16px;
+        margin-top: 8px;
+        padding-top: 8px;
+    }
+
+    .card__number {
+        font-size: 10px;
+        letter-spacing: 1.5px;
+    }
+}
+
+/* NOVO FORMATO DOS CARDS — DESKTOP */
+
+.property__cards {
+    bottom: 50%;
+    transform: translateY(50%);
+    align-items: stretch;
+    gap: 22px;
+}
+
+.property__card {
+    min-width: 0;
+    padding: 0;
+    overflow: hidden;
+    border-radius: 18px;
+}
+
+.card__image {
+    width: 100%;
+    height: clamp(240px, 38vh, 420px);
+    display: block;
+    object-fit: cover;
+    object-position: center;
+}
+
+.card__info {
+    padding: 22px;
+}
+
+/* CARROSSEL HORIZONTAL — CELULAR */
+
+@media (max-width: 768px) {
+
+    .property__cards {
+        position: absolute;
+        inset: 0;
+        bottom: auto;
+        transform: none;
+
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+
+        width: 100%;
+        height: 100%;
+        padding: 24px;
+
+        gap: 16px;
+
+        overflow-x: auto;
+        overflow-y: hidden;
+
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior-x: contain;
+    }
+
+    .property__card {
+        flex: 0 0 86%;
+        width: 86%;
+        max-width: 360px;
+
+        scroll-snap-align: center;
+        padding: 0;
+    }
+
+    .card__image {
+        height: clamp(230px, 42svh, 390px);
+        object-fit: cover;
+    }
+
+    .card__info {
+        padding: 18px;
+    }
+}
+
+/* TELAS MENORES */
+
+@media (max-width: 411px) {
+
+    .property__cards {
+        padding: 16px;
+        gap: 12px;
+    }
+
+    .property__card {
+        flex-basis: 88%;
+        width: 88%;
+    }
+
+    .card__image {
+        height: clamp(190px, 38svh, 300px);
+    }
+
+    .card__info {
+        padding: 14px;
+    }
+
+    .card__info h2 {
+        font-size: 18px;
+    }
+
+    .card__price {
+        font-size: 16px;
+    }
+}
+
+/* CARDS VERTICAIS — DESKTOP */
+
+
+/* CARDS CENTRALIZADOS — DESKTOP */
+
+@media (min-width: 769px) {
+
+    .property__cards {
+        left: 0;
+        right: 0;
+        width: 100%;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        gap: 24px;
+        padding: 0 6%;
+    }
+
+    .property__card {
+        flex: 0 1 290px;
+        width: 100%;
+        max-width: 290px;
+        min-width: 0;
+        border-radius: 16px;
+    }
+
+    .card__image {
+        display: block;
+        width: 100%;
+        height: auto;
+        object-fit: initial;
+        background: transparent;
+    }
+
+    .card__info {
+        padding: 16px 18px;
+    }
+
+    .card__info h2 {
+        font-size: 20px;
+        margin: 8px 0;
+    }
+
+    .card__price {
+        font-size: 17px;
+        margin-top: 10px;
+        padding-top: 10px;
+    }
+}
+
+/* CARROSSEL DE IMÓVEIS — CELULAR */
+
+@media (max-width: 768px) {
+
+    .property__cards {
+        position: absolute;
+        inset: 0;
+        transform: none;
+
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+
+        width: 100%;
+        height: 100%;
+        padding: 20px;
+
+        gap: 16px;
+
+        overflow-x: auto;
+        overflow-y: hidden;
+
+        scroll-snap-type: x mandatory;
+        scroll-padding-inline: 20px;
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior-x: contain;
+    }
+
+    .property__card {
+        flex: 0 0 82%;
+        width: 82%;
+        max-width: 340px;
+        min-width: 0;
+
+        scroll-snap-align: start;
+        border-radius: 16px;
+    }
+
+    .card__image {
+        display: block;
+        width: 100%;
+        height: auto;
+        object-fit: initial;
+    }
+
+    .card__info {
+        padding: 14px 16px;
+    }
+
+    .card__info h2 {
+        font-size: 18px;
+        margin: 8px 0;
+    }
+
+    .card__price {
+        font-size: 16px;
+    }
+
+    /* ESCONDER A BARRA DE ROLAGEM */
+
+    .property__cards {
+        scrollbar-width: none;
+    }
+
+    .property__cards::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+/* SEÇÃO DE ARQUITETURA */
+
+.architecture {
+    min-height: 100vh;
+    background: #171916;
+    padding: 100px 8%;
+    color: #f5f0e8;
+    text-align: center;
+}
+
+.architecture__heading {
+    max-width: 700px;
+    margin: 0 auto 70px;
+}
+
+.architecture__heading span {
+    color: #d9bd91;
+    font-size: 12px;
+    letter-spacing: 4px;
+}
+
+.architecture__heading h2 {
+    font-size: clamp(32px, 4vw, 56px);
+    font-weight: 400;
+    margin: 24px 0;
+}
+
+.architecture__heading p {
+    color: #bcb8af;
+    font-size: 19px;
+    line-height: 1.8;
+}
+
+.architecture__details {
+    display: flex;
+    justify-content: center;
+    gap: 80px;
+    flex-wrap: wrap;
+}
+
+.architecture__detail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+}
+
+.architecture__detail i {
+    color: #d9bd91;
+    font-size: 32px;
+}
+
+.architecture__detail strong {
+    font-size: 34px;
+    font-weight: 400;
+}
+
+.architecture__detail span {
+    color: #bcb8af;
+    font-size: 11px;
+    letter-spacing: 2px;
+}
+/* PLANTA ARQUITETÔNICA */
+
+.architecture__plan {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto 70px;
+}
+
+.architecture__plan img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+/* BOTÃO DETALHES */
+
+.details__button {
+    position: absolute;
+    bottom: 3%;
+    left: 50%;
+    transform: translateX(-50%);
+
+    color: #f5f0e8;
+    text-decoration: none;
+    font-size: 12px;
+    letter-spacing: 3px;
+
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease, color 0.3s ease;
+}
+
+.details__button span {
+    font-size: 20px;
+    color: #d9bd91;
+}
+
+.details__button:hover {
+    color: #d9bd91;
+}
+
+.hero:has(.property__cards.mostrar) .details__button {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+/* HOVER DOS CARDS — CORRIGIDO */
+
+@media (min-width: 769px) {
+
+    .property__cards.mostrar .property__card {
+        animation-fill-mode: forwards;
+        transition:
+            translate 0.35s ease,
+            box-shadow 0.35s ease,
+            border-color 0.35s ease;
+    }
+
+    .property__cards.mostrar .property__card:hover {
+        translate: 0 -12px;
+        box-shadow: 0 30px 65px rgba(0, 0, 0, 0.45);
+        border-color: rgba(217, 189, 145, 0.7);
+    }
+
+}
+
+/* HOVER DOS CARDS — CORRIGIDO */
+
+@media (min-width: 769px) {
+
+    .property__cards.mostrar .property__card {
+        animation-fill-mode: forwards;
+        transition:
+            translate 0.35s ease,
+            box-shadow 0.35s ease,
+            border-color 0.35s ease;
+    }
+
+    .property__cards.mostrar .property__card:hover {
+        translate: 0 -12px;
+        box-shadow: 0 30px 65px rgba(0, 0, 0, 0.45);
+        border-color: rgba(217, 189, 145, 0.7);
+    }
+
+}
+
+/* TRANSIÇÃO PARA O TOUR 3D */
+
+.tour-intro {
+  min-height: 65vh;
+  padding: 100px 24px;
+  background: #0b0b0d;
+  color: #f5f1e9;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 24px;
+}
+
+.tour-intro__eyebrow {
+  color: #c5a46b;
+  font-size: 12px;
+  letter-spacing: 4px;
+  font-weight: 500;
+}
+
+.tour-intro h2 {
+  max-width: 760px;
+  font-size: clamp(32px, 5vw, 60px);
+  font-weight: 400;
+  line-height: 1.15;
+}
+
+.tour-intro p {
+  max-width: 540px;
+  color: #aaa39a;
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+.tour-intro__button {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 16px 30px;
+  border: 1px solid #c5a46b;
+  color: #c5a46b;
+  text-decoration: none;
+  font-size: 12px;
+  letter-spacing: 2px;
+  transition: all 0.3s ease;
+}
+
+.tour-intro__button:hover {
+  background: #c5a46b;
+  color: #0b0b0d;
+  transform: translateY(-3px);
+}
+
+/* RODAPÉ AUREA */
+
+.footer {
+  background: #0b0b0d;
+  color: #f5f1e9;
+  padding: 100px 8% 30px;
+}
+
+.footer__content {
+  min-height: 420px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 24px;
+}
+
+.footer__eyebrow {
+  color: #c5a46b;
+  font-size: 11px;
+  letter-spacing: 4px;
+}
+
+.footer__content h2 {
+  max-width: 780px;
+  font-size: clamp(36px, 5vw, 68px);
+  font-weight: 400;
+  line-height: 1.15;
+}
+
+.footer__content p {
+  color: #aaa39a;
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.footer__button {
+  display: inline-block;
+  margin-top: 16px;
+  padding: 17px 36px;
+  border: 1px solid #c5a46b;
+  color: #c5a46b;
+  text-decoration: none;
+  font-size: 12px;
+  letter-spacing: 2px;
+  transition: all 0.3s ease;
+}
+
+.footer__button:hover {
+  background: #c5a46b;
+  color: #0b0b0d;
+  transform: translateY(-4px);
+}
+
+.footer__bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 24px;
+  padding-top: 32px;
+  border-top: 1px solid rgba(197, 164, 107, 0.25);
+}
+
+.footer__brand {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.footer__brand strong {
+  color: #e7d4b1;
+  font-size: 28px;
+  font-weight: 400;
+  letter-spacing: 6px;
+}
+
+.footer__brand span,
+.footer__copyright {
+  color: #88817a;
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+
+@media (max-width: 600px) {
+  .footer {
+    padding: 80px 24px 30px;
+  }
+
+  .footer__bottom {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+}
+
